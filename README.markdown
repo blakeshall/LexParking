@@ -3,7 +3,7 @@ LexParking
 Short Description:
 -----------------
 Online map using the Google Maps API to show parking spots in downtown Lexington, KY.
-Currently there are only five areas denoted in the app that I hand drew. The plan is to add more areas and possibly see if LexPark will provid geographic data, number of parking spaces, and any other useful info.
+Currently there are only five areas denoted in the app that I hand drew. The plan is to add more areas and possibly see if LexPark will provide geographic data, number of parking spaces, and any other useful info.
 
 Use:
 ----

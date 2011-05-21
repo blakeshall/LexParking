@@ -36,7 +36,7 @@ var park6 = new parkingArea(
   [new google.maps.LatLng(38.049082985130205, -84.4994310092926),
   new google.maps.LatLng(38.04930898955449, -84.4991225552559),
   new google.maps.LatLng(38.04886754101074, -84.49863439321518),
-  new google.maps.LatLng(38.04865632067027, -84.49894552946091)], "a lot", 2, "garage");
+  new google.maps.LatLng(38.04865632067027, -84.49894552946091)], "?", "No", "garage");
 parking.push(park6);
 var park7 = new parkingArea(
   [new google.maps.LatLng(38.04977287729091, -84.49958456575871),
@@ -44,3 +44,40 @@ var park7 = new parkingArea(
   new google.maps.LatLng(38.04956271565274, -84.49931634485722),
   new google.maps.LatLng(38.04954793038915, -84.49933377921582)], 5, 2, "meter");
 parking.push(park7);
+var park8 = new parkingArea(
+  [new google.maps.LatLng(38.04815150158507, -84.50648790121079),
+  new google.maps.LatLng(38.04961314393737, -84.50438504934311),
+  new google.maps.LatLng(38.048126154928475, -84.50245385885239),
+  new google.maps.LatLng(38.04649550157844, -84.50469618558884)], "?", "No", "lot");
+parking.push(park8);
+var park9 = new parkingArea(
+  [new google.maps.LatLng(38.050215112435744, -84.5002034854889),
+  new google.maps.LatLng(38.05020138338485, -84.50018336892128),
+  new google.maps.LatLng(38.049938418759446, -84.50056692481041),
+  new google.maps.LatLng(38.04995109177509, -84.50058435916901)], 5, 2, "meter");
+parking.push(park9);
+var park10 = new parkingArea(
+  [new google.maps.LatLng(38.04935651376077, -84.49896966934205),
+  new google.maps.LatLng(38.04936707469127, -84.49895223498345),
+  new google.maps.LatLng(38.048846419004384, -84.4983675134182),
+  new google.maps.LatLng(38.048833745797495, -84.4983862888813)], 10, 2, "station")
+parking.push(park10);
+var park11 = new parkingArea(
+  [new google.maps.LatLng(38.04979795935591, -84.49825217843056),
+  new google.maps.LatLng(38.04980535196282, -84.49823608517647),
+  new google.maps.LatLng(38.04919387523892, -84.4975574862957),
+  new google.maps.LatLng(38.049186482570256, -84.49757760286332)], "?", 2 , "meter");
+parking.push(park11);
+var park12 = new parkingArea(
+  [new google.maps.LatLng(38.04752311313887, -84.49707871198655),
+  new google.maps.LatLng(38.04753473045326, -84.49705859541893),
+  new google.maps.LatLng(38.0474069398936, -84.49691509723664),
+  new google.maps.LatLng(38.04739743480173, -84.49693119049073)], 3, 1, "meter");
+parking.push(park12);
+var park13 = new parkingArea(
+  [new google.maps.LatLng(38.04501584234007, -84.49735632061959),
+  new google.maps.LatLng(38.04511512091255, -84.49719941139222),
+  new google.maps.LatLng(38.044242732255036, -84.49623515725136),
+  new google.maps.LatLng(38.044142396331324, -84.49638267874718)], "?", "No", "garage");
+parking.push(park13);
+
