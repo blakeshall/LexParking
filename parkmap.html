@@ -44,7 +44,7 @@
 			});
 			polygons.push(parkPoly);
 			var parkMark = new google.maps.Marker({
-				position: new google.maps.LatLng(((parking[i].coords[0].lat()+parking[i].coords[3].lat())/2),((parking[i].coords[0].lng()+parking[i].coords[3].lng())/2)),
+				position: new google.maps.LatLng(((parking[i].coords[0].lat()+parking[i].coords[2].lat())/2),((parking[i].coords[0].lng()+parking[i].coords[2].lng())/2)),
 				map: map
 			});
 			markers.push(parkMark);

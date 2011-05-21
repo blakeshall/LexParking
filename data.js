@@ -32,3 +32,15 @@ var park5 = new parkingArea(
 	new google.maps.LatLng(38.05077272094185, -84.50069567084313),
 	new google.maps.LatLng(38.05078222559548, -84.50067689538002)], 4, 2, "meter");
 parking.push(park5);
+var park6 = new parkingArea(
+  [new google.maps.LatLng(38.049082985130205, -84.4994310092926),
+  new google.maps.LatLng(38.04930898955449, -84.4991225552559),
+  new google.maps.LatLng(38.04886754101074, -84.49863439321518),
+  new google.maps.LatLng(38.04865632067027, -84.49894552946091)], "a lot", 2, "garage");
+parking.push(park6);
+var park7 = new parkingArea(
+  [new google.maps.LatLng(38.04977287729091, -84.49958456575871),
+  new google.maps.LatLng(38.04978977468285, -84.49956176698208),
+  new google.maps.LatLng(38.04956271565274, -84.49931634485722),
+  new google.maps.LatLng(38.04954793038915, -84.49933377921582)], 5, 2, "meter");
+parking.push(park7);
