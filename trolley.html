@@ -12,24 +12,26 @@
 	</script>
 	<script type="text/javascript" src="parking.js"></script>
 	<script type="text/javascript" src="data.js"></script>
-	<script type="text/javascript" src="markermanager.js"></script>
 	<script type="text/javascript">
 
 	var map;
 	var polygons = [];
-	var markers = [];
+
 	var green;
+	var blue;
 	
+	var markers = [];
+
 	var parkInfo = new google.maps.InfoWindow({
 		content: ""
 	});
-	
+
 	function initialize() {
 		var lex = new google.maps.LatLng(38.045870267347816, -84.49564373016358);
 		var myOptions = {
 			zoom: 15,
 			center: lex,
-			
+
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		};
 		map = new google.maps.Map(document.getElementById("map_canvas"),
@@ -45,17 +47,22 @@
 				fillColor: "#FF0000",
 				fillOpactiy: 0.5
 			});
+			var position = new google.maps.LatLng(((parking[i].coords[0].lat()+parking[i].coords[2].lat())/2),((parking[i].coords[0].lng()+parking[i].coords[2].lng())/2));
 			polygons.push(parkPoly);
-			var parkMark = new google.maps.Marker({
-				position: new google.maps.LatLng(((parking[i].coords[0].lat()+parking[i].coords[2].lat())/2),((parking[i].coords[0].lng()+parking[i].coords[2].lng())/2)),
-				map: map
-			});
-			markers.push(parkMark);
-			
-			attachListeners(parkPoly, parkMark, i)
-			
+			createMarker(position);
+
 		}
 		
+		function createMarker(loc){
+			var parkMark = new google.maps.Marker({
+				position: loc,
+				title: "Parking",
+				map: map,
+			});
+			markers.push(parkMark);
+			attachListeners(parkPoly, parkMark, i);
+		}
+
 		// Event listeners for parking areas
 		function attachListeners(parkPoly, parkMark, i){
 			google.maps.event.addListener(parkMark, 'click', function(){
@@ -66,14 +73,14 @@
 				parkInfo.setContent("<h3>Parking Spaces: " + parking[i].spaces + "</h3><h2>" + parking[i].limit + " hour limit" + "<h2>Type: " + parking[i].meterType + "</h2>");
 				parkInfo.open(map,parkMark);
 			});
-			
+
 			google.maps.event.addListener(parkInfo, 'closeclick', function(){
 				parkPoly.setMap(null);
 			});
 		}
-		
-		//trolley map
-		
+
+		//trolley routes
+
 		var pathBlue =[new google.maps.LatLng(38.03938948453886, -84.48915278434754),
 		new google.maps.LatLng(38.04997643779977, -84.5010510635376),
 		new google.maps.LatLng(38.05178443159051, -84.50313245773316),
@@ -96,7 +103,7 @@
 		new google.maps.LatLng(38.04134983398199, -84.4934872341156),
 		new google.maps.LatLng(38.038544490145554, -84.49032222747803),
 		new google.maps.LatLng(38.03938948453886, -84.48915278434754)];
-		
+
 		var pathGreen = [new google.maps.LatLng(38.05172529231318, -84.49137365341187),
 		new google.maps.LatLng(38.04419731706228, -84.50219904899598),
 		new google.maps.LatLng(38.04215254813543, -84.49989234924317),
@@ -106,7 +113,7 @@
 		new google.maps.LatLng(38.04151882716663, -84.50386201858521),
 		new google.maps.LatLng(38.05096492591949, -84.49053680419922),
 		new google.maps.LatLng(38.05172529231318, -84.49137365341187)];
-		
+
 		green = new google.maps.Polyline({
 			path: pathGreen,
 			strokeColor: "#397D02",
@@ -120,30 +127,45 @@
 			strokeWeight: 2
 		});
 	}
-		function toggleTrolley(){
-			if (document.opt.trolley.checked == true){
-				//changed to true
-				green.setMap(map);
-				blue.setMap(map);
-			}
-			else{
-				//changed to false
-				green.setMap(null);
-				blue.setMap(null);
+	function toggleTrolley(){
+		if (document.opt.trolley.checked == true){
+			//changed to true
+			green.setMap(map);
+			blue.setMap(map);
+		}
+		else{
+			//changed to false
+			green.setMap(null);
+			blue.setMap(null);
+		}
+	}
+
+	function toggleParking(){
+		if(document.opt.parking.checked == true){
+			for(i in markers){
+				markers[i].setVisible(true);
 			}
 		}
+		else{
+			for(i in markers){
+				markers[i].setVisible(false);
+			}
+		}
+	}
 
-		google.maps.event.addDomListener(window, 'load', initialize);
+	google.maps.event.addDomListener(window, 'load', initialize);
 
-		</script>
-	</head>
-	<body>
-		<div id="map_canvas" style="width:75%; height:100%; float:left"></div>
-		<div id="side" style="width:24%; height:100%; float:right">
-							<h1>Options</h1>
-							<form name="opt">
-								<input type="checkbox" name="trolley" onclick="toggleTrolley()"/>Trolley Routes
-							</form>
-						</div>
-	</body>
-	</html>
+	</script>
+</head>
+<body>
+	<div id="map_canvas" style="width:75%; height:100%; float:left"></div>
+	<div id="side" style="width:24%; height:100%; float:right">
+		<h1>Options</h1>
+		<form name="opt">
+			<input type="checkbox" name="parking" onclick="toggleParking()" checked="true">Parking</br>
+			<input type="checkbox" name="trolley" onclick="toggleTrolley()"/>Trolley Routes</br>
+
+		</form>
+	</div>
+</body>
+</html>

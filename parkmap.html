@@ -59,7 +59,7 @@
 					polygons[j].setMap(null);
 				}
 				parkPoly.setMap(map);
-				parkInfo.setContent("<h3>Parking Spaces: " + parking[i].spaces + "</h3><h2>" + parking[i].limit + " hour limit");
+				parkInfo.setContent("<h3>Parking Spaces: " + parking[i].spaces + "</h3><h2>" + parking[i].limit + " hour limit" + "<h2>Type: " + parking[i].meterType + "</h2>");
 				parkInfo.open(map,parkMark);
 			});
 			
