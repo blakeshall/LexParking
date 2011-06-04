@@ -21,6 +21,13 @@
 	var blue;
 	
 	var markers = [];
+	var parkIcon = "icons/park.png";
+	var greenStopIcon = new google.maps.MarkerImage('icons/greenStop.png',
+		new google.maps.Size(20,20),
+		new google.maps.Point(0,0),
+		new google.maps.Point(10,10));
+		
+	var trolleyStops = [];
 
 	var parkInfo = new google.maps.InfoWindow({
 		content: ""
@@ -29,7 +36,7 @@
 	function initialize() {
 		var lex = new google.maps.LatLng(38.045870267347816, -84.49564373016358);
 		var myOptions = {
-			zoom: 15,
+			zoom: 16,
 			center: lex,
 
 			mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -58,6 +65,7 @@
 				position: loc,
 				title: "Parking",
 				map: map,
+				icon: parkIcon
 			});
 			markers.push(parkMark);
 			attachListeners(parkPoly, parkMark, i);
@@ -117,38 +125,54 @@
 		green = new google.maps.Polyline({
 			path: pathGreen,
 			strokeColor: "#397D02",
-			strokeOpacity: .95,
-			strokeWeight: 2
+			strokeOpacity: .5,
+			strokeWeight: 4
 		});
 		blue = new google.maps.Polyline({
 			path: pathBlue,
 			strokeColor: "#0000FF",
-			strokeOpacity: .95,
-			strokeWeight: 2
+			strokeOpacity: .5,
+			strokeWeight: 4
 		});
+		
+		//trolley stations
+		
+		var trolleyStop =  new google.maps.Marker({
+			position: new google.maps.LatLng(38.051740077135456, -84.49136828899384),
+			title: "Trolley Stop",
+			icon: greenStopIcon
+		});
+		trolleyStops.push(trolleyStop);
+		
 	}
 	function toggleTrolley(){
 		if (document.opt.trolley.checked == true){
 			//changed to true
 			green.setMap(map);
 			blue.setMap(map);
+			for( i in trolleyStops){
+				trolleyStops[i].setMap(map);
+			}
 		}
 		else{
 			//changed to false
 			green.setMap(null);
 			blue.setMap(null);
+			for( i in trolleyStops){
+				trolleyStops[i].setMap(null);
+			}
 		}
 	}
 
 	function toggleParking(){
 		if(document.opt.parking.checked == true){
 			for(i in markers){
-				markers[i].setVisible(true);
+				markers[i].setMap(map);
 			}
 		}
 		else{
 			for(i in markers){
-				markers[i].setVisible(false);
+				markers[i].setMap(null);
 			}
 		}
 	}

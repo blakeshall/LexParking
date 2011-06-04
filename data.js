@@ -1,4 +1,4 @@
-var total = 0;
+
 var parking = []
 
 
